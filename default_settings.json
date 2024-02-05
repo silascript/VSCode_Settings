@@ -34,6 +34,8 @@
 	"editor.renderLineHighlight": "all",
 	// 文件列表smooth滚动
 	"workbench.list.smoothScrolling": true,
+	// sticky scroll 功能开启
+	"editor.stickyScroll.enabled": true,
 	// debug
 	"debug.showBreakpointsInOverviewRuler": true,
 	// Error Lens 设置
@@ -45,11 +47,6 @@
 	},
 	// 将哪些配置应用到所有Profile中
 	"workbench.settings.applyToAllProfiles": [
-		"editor.fontSize",
-		"editor.fontFamily",
-		"editor.fontWeight",
-		"debug.console.fontSize",
-		"terminal.integrated.fontFamily",
 		"editor.minimap.maxColumn",
 		"editor.minimap.autohide",
 		"editor.quickSuggestions",
