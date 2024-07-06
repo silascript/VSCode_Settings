@@ -1,5 +1,3 @@
-
-
 echo "开始安装插件..."
 
 # 安装简繁体中文语言包
@@ -36,18 +34,17 @@ code --install-extension usernamehw.errorlens
 # 安装 注释 插件
 code --install-extension aaron-bond.better-comments
 
+# 安装 代码阅读 Aide 插件
+code --install-extension nicepkg.aide-pro
 
 echo "所有插件安装完毕!"
-
 
 # 将默认Profile的Settings复制到指定目录:~/.config/Code/User/
 echo "复制settings..."
 cp -v ./default_settings.json ~/.config/Code/User/settings.json
 
-if [ $? == 0 ]
-then
+if [ $? == 0 ]; then
 	echo "settings复制成功！"
 else
 	echo "settings复制失败！"
 fi
-
