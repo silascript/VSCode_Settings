@@ -14,7 +14,7 @@
 	"vim.showMarksInGutter": true,
 	"vim.smartRelativeLine": true,
 	// 字体
-	"editor.fontFamily": "'Meslo LG S', 'JetBrains Mono', 'Fira Code', 'Cascadia Mono PL', 'Droid Sans Mono', 'monospace'",
+	"editor.fontFamily": "'MesloLGS NF','Meslo LG S', 'JetBrains Mono', 'Fira Code', 'Cascadia Mono PL', 'Droid Sans Mono', 'monospace'",
 	"editor.fontSize": 20,
 	"editor.fontWeight": "350",
 	"debug.console.fontSize": 18,
