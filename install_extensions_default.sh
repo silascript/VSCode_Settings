@@ -35,7 +35,7 @@ code --install-extension usernamehw.errorlens
 code --install-extension aaron-bond.better-comments
 
 # 安装 代码阅读 Aide 插件
-code --install-extension nicepkg.aide-pro
+# code --install-extension nicepkg.aide-pro
 
 echo "所有插件安装完毕!"
 
