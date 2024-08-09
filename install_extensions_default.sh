@@ -43,6 +43,9 @@ echo "所有插件安装完毕!"
 echo "复制settings..."
 cp -v ./default_settings.json ~/.config/Code/User/settings.json
 
+# 将默认快捷键配置复制到指定目录:~/.config/Code/User/
+cp -v ./default_keybindings.json/.config/Code/User/keybindings.json
+
 if [ $? == 0 ]; then
 	echo "settings复制成功！"
 else

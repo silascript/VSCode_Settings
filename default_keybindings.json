@@ -1,0 +1,13 @@
+// 将键绑定放在此文件中以覆盖默认值
+[
+	// 开启关闭面板
+	// 设置快捷键，避免与vim插件快捷键冲突
+	{
+		"key": "ctrl+meta+j",
+		"command": "workbench.action.togglePanel"
+	},
+	{
+		"key": "ctrl+j",
+		"command": "-workbench.action.togglePanel"
+	}
+]
