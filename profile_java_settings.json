@@ -1,0 +1,87 @@
+{
+	"workbench.startupEditor": "none",
+	// 主题
+	"workbench.colorTheme": "Catppuccin Macchiato",
+	"workbench.iconTheme": "catppuccin-perfect-macchiato",
+	"catppuccin.accentColor": "green",
+	// 窗口样式
+	"window.menuBarVisibility": "toggle",
+	"window.titleBarStyle": "custom",
+	"window.zoomLevel": 1,
+	// vim
+	"vim.easymotion": true,
+	"vim.highlightedyank.enable": true,
+	"vim.showMarksInGutter": true,
+	"vim.smartRelativeLine": true,
+	// 字体
+	"editor.fontFamily": "'MesloLGS NF','Meslo LG S', 'JetBrains Mono', 'Fira Code', 'Cascadia Mono PL', 'Droid Sans Mono', 'monospace'",
+	"editor.fontSize": 20,
+	"editor.fontWeight": "350",
+	"debug.console.fontSize": 18,
+	"terminal.integrated.fontFamily": "'CaskaydiaCove Nerd Font Mono','Cascadia Mono PL'",
+	"terminal.integrated.fontSize": 18,
+	// minimap
+	"editor.minimap.maxColumn": 80,
+	"editor.minimap.autohide": true,
+	// 补全设置
+	"editor.quickSuggestions": {
+		"other": true,
+		"comments": false,
+		"strings": false
+	},
+	// 光标设置
+	"editor.cursorWidth": 3,
+	"editor.cursorBlinking": "smooth",
+	"editor.renderLineHighlight": "all",
+	// 文件列表smooth滚动
+	"workbench.list.smoothScrolling": true,
+	// sticky scroll 功能开启
+	"editor.stickyScroll.enabled": true,
+	// debug
+	"debug.showBreakpointsInOverviewRuler": true,
+	// Error Lens 设置
+	"errorLens.delay": 3,
+	"workbench.colorCustomizations": {
+		// errorLens 插件颜色配置
+		// 警告前景色
+		"errorLens.warningForeground": "#7b849a"
+	},
+	// 将哪些配置应用到所有Profile中
+	"workbench.settings.applyToAllProfiles": [
+		"editor.minimap.maxColumn",
+		"editor.minimap.autohide",
+		"editor.quickSuggestions",
+		"editor.cursorWidth",
+		"editor.cursorBlinking",
+		"editor.renderLineHighlight",
+		"window.menuBarVisibility",
+		"window.titleBarStyle",
+		"window.zoomLevel",
+		"workbench.list.smoothScrolling",
+		"debug.showBreakpointsInOverviewRuler",
+		"vim.easymotion",
+		"vim.highlightedyank.enable",
+		"vim.showMarksInGutter",
+		"vim.smartRelativeLine",
+		"errorLens.delay"
+	],
+
+	// redhat java 插件配置
+	// jdk path值可在脚本运行完成后再作进一步修改
+	"redhat.telemetry.enabled": false,
+	"java.configuration.runtimes": [
+		{
+			"name": "JavaSE-21",
+			"path": "/home/silascript/.sdkman/candidates/java/21.0.4-tem",
+			"default": true
+		},
+		{
+			"name": "JavaSE-17",
+			"path": "/home/silascript/.sdkman/candidates/java/17.0.12-tem"
+		},
+		{
+			"name": "JavaSE-22",
+			"path": "/home/silascript/.sdkman/candidates/java/22.0.1-tem"
+		}
+	]
+}
