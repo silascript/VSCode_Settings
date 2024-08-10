@@ -43,7 +43,7 @@ function install_batch() {
 	# echo ${exuid_arr[@]}
 
 	if [ ${#exuid_arr[@]} -eq 0 ]; then
-		echo -e "\e[96m \[93m扩展列表为空！\e[96m...\n \e[0m"
+		echo -e "\e[93m扩展列表为空！\e[96m...\n \e[0m"
 	else
 		for exui in "${exuid_arr[@]}"; do
 			# 安装
@@ -86,4 +86,3 @@ function install_batch() {
 # echo ${arr_t1[@]}
 # 进行批量安装
 # install_batch ${arr_t1[@]}
-
