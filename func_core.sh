@@ -2,16 +2,6 @@
 #          │						核心函数                          │
 #          ╰──────────────────────────────────────────────────────────╯
 
-# 安装扩展
-function install_extension() {
-	# 扩展的UID，即 Unique Identifier
-	local extension_uid=$1
-
-	# 安装
-	code --install-extension $extension_uid
-
-}
-
 # 读取扩展列表
 function read_extension_list() {
 
@@ -28,21 +18,40 @@ function read_extension_list() {
 	done
 
 	# 返回 扩展uid 数组
-	# echo "${exuid_arr[@]}"
-
 	echo ${exuid_arr[@]}
-	# echo "${exuid_arr[*]}"
-	# echo $exuid_arr
+	# echo "${exuid_arr[@]}"
 
 }
 
-# function test1(){
-# 	local array1=(2 5 22 32 18)
-#
-# 	# echo ${#array1[@]}
-#
-# 	echo ${array1[@]}
-# }
+# 安装扩展
+function install_extension() {
+	# 扩展的UID，即 Unique Identifier
+	local extension_uid=$1
+
+	# 安装
+	code --install-extension $extension_uid
+
+}
+
+# 批量安装扩展
+# 参数为扩展数组
+function install_batch() {
+
+	# 扩展 uid 数组
+	local exuid_arr=($@)
+
+	# echo ${exuid_arr[@]}
+
+	if [ ${#exuid_arr[@]} -eq 0 ]; then
+		echo -e "\e[96m \[93m扩展列表为空！\e[96m...\n \e[0m"
+	else
+		for exui in "${exuid_arr[@]}"; do
+			# 安装
+			install_extension $exui
+		done
+	fi
+
+}
 
 ################################测试################################
 
@@ -53,25 +62,28 @@ function read_extension_list() {
 # --------------------------------------------------
 
 # 测试读取扩展列表函数
-arr_t1=($(read_extension_list $1))
+# arr_t1=($(read_extension_list $1))
 # read_extension_list $1
 
 # 查看数组元素个数
-echo ${#arr_t1[@]}
+# echo ${#arr_t1[@]}
 
 # echo $arr_t1
-echo ${arr_t1[@]}
+# echo ${arr_t1[@]}
 
-echo "----------------------------"
+# echo "----------------------------"
 
 # 打印出数组元素
-for a_temp in ${arr_t1[@]}; do
-	echo $a_temp
-done
+# for a_temp in ${arr_t1[@]}; do
+# 	echo $a_temp
+# done
 
 # --------------------------------------------------
-# 测试 test1 函数
-# 获取返回值次构建为数组
-# r_arr=($(test1))
-# echo ${#r_arr[@]}
-# echo $r_arr
+
+# 测试批量安装扩展
+# 获取扩展uid列表并构建成数组
+# arr_t1=($(read_extension_list $1))
+# echo ${arr_t1[@]}
+# 进行批量安装
+# install_batch ${arr_t1[@]}
+
