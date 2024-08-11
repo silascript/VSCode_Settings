@@ -28,7 +28,7 @@ function install_default_extensions() {
 
 	sleep 0.02
 
-	echo -e "\n\e[96m开始安装插件 ... \n \e[0m"
+	echo -e "\n\e[94m开始安装插件 ... \n \e[0m"
 	# 进行批量安装
 	install_batch ${arr_t1[@]}
 
@@ -43,7 +43,7 @@ function install_default_extensions() {
 function cp_settings() {
 
 	# 将默认Profile的Settings复制到指定目录:~/.config/Code/User/
-	echo -e "\e[96m复制 settings ...\n \e[0m"
+	echo -e "\e[94m复制 settings ...\n \e[0m"
 	cp -v ./default_settings.json ~/.config/Code/User/settings.json
 
 	# 将默认快捷键配置复制到指定目录:~/.config/Code/User/

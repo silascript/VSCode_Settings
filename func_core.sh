@@ -10,12 +10,16 @@ function read_extension_list() {
 	# 扩展 uid 数组
 	local exuid_arr=()
 
-	# 过滤掉空行及使用#注释的行
-	for line in $(cat $exlist_path | grep -v ^$ | grep -v ^\#); do
-		# 把每行扩展的 uid 存储进数组中
-		exuid_arr+=($line)
-		# echo $line
-	done
+	# 保证扩展列表存在
+	if [ -f "$exlist_path" ]; then
+
+		# 过滤掉空行及使用#注释的行
+		for line in $(cat $exlist_path | grep -v ^$ | grep -v ^\#); do
+			# 把每行扩展的 uid 存储进数组中
+			exuid_arr+=($line)
+			# echo $line
+		done
+	fi
 
 	# 返回 扩展uid 数组
 	echo ${exuid_arr[@]}
@@ -48,6 +52,7 @@ function install_batch() {
 		for exui in "${exuid_arr[@]}"; do
 			# 安装
 			install_extension $exui
+			sleep 0.01
 		done
 	fi
 
