@@ -1,53 +1,70 @@
-echo "开始安装插件..."
+#          ╭──────────────────────────────────────────────────────────╮
+#          │                 为默认Profile安装扩展                    │
+#          ╰──────────────────────────────────────────────────────────╯
 
-# 安装简繁体中文语言包
-code --install-extension MS-CEINTL.vscode-language-pack-zh-hans
-code --install-extension MS-CEINTL.vscode-language-pack-zh-hant
+#####################################################################
+# 引入核心函数脚本
+source ./func_core.sh
 
-# 安装简繁转换插件
-code --install-extension Compulim.vscode-chinese-translation
+#####################################################################
 
-# 安装 字体选择 插件
-code --install-extension evan-buss.font-switcher
+# 安装默认扩展
+function install_default_extensions() {
 
-# 安装 vim 插件
-code --install-extension vscodevim.vim
+	# 默认扩展uid列表路径
+	local exlist_defualt_path=./Extension_List/exlist_default.txt
+	# 扩展uid列表路径
+	local exlist_path=$1
 
-# 安装 Catppuccin 主题
-code --install-extension Catppuccin.catppuccin-vsc
+	# 判断扩展uid列表路径
+	# 如果没接收到实参，则设置一个默认值
+	if [ -z "$exlist_path" ]; then
+		exlist_path=$exlist_defualt_path
+	fi
 
-# 安装 Icons
-code --install-extension thang-nm.catppuccin-perfect-icons
+	# 获取扩展uid列表并构建成数组
+	arr_t1=($(read_extension_list $exlist_path))
+	# echo ${arr_t1[@]}
 
-# 安装 路径提示 插件
-code --install-extension christian-kohler.path-intellisense
+	echo "开始安装插件..."
+	# 进行批量安装
+	install_batch ${arr_t1[@]}
 
-# 安装BookMark 插件
-code --install-extension alefragnani.Bookmarks
+	echo "所有插件安装完毕!"
+}
 
-# 安装 项目管理 插件
-code --install-extension alefragnani.project-manager
+#####################################################################
 
-# 安装 Error Lens 插件
-code --install-extension usernamehw.errorlens
+# 复制配置文件settings到指定目录
+function cp_settings() {
 
-# 安装 注释 插件
-code --install-extension aaron-bond.better-comments
+	# 将默认Profile的Settings复制到指定目录:~/.config/Code/User/
+	echo "复制settings..."
+	cp -v ./default_settings.json ~/.config/Code/User/settings.json
 
-# 安装 Aide 插件
-# code --install-extension nicepkg.aide-pro
+	# 将默认快捷键配置复制到指定目录:~/.config/Code/User/
+	cp -v ./default_keybindings.json ~/.config/Code/User/keybindings.json
 
-echo "所有插件安装完毕!"
+	if [ $? -eq 0 ]; then
+		echo "settings复制成功！"
+	else
+		echo "settings复制失败！"
+	fi
+}
 
-# 将默认Profile的Settings复制到指定目录:~/.config/Code/User/
-echo "复制settings..."
-cp -v ./default_settings.json ~/.config/Code/User/settings.json
+# 初始化默认Profile
+function init_default() {
 
-# 将默认快捷键配置复制到指定目录:~/.config/Code/User/
-cp -v ./default_keybindings.json ~/.config/Code/User/keybindings.json
+	# 默认Profile 扩展uid列表路径
+	local default_exlist_path=$1
 
-if [ $? == 0 ]; then
-	echo "settings复制成功！"
-else
-	echo "settings复制失败！"
-fi
+	# 安装默认扩展
+	install_default_extensions $default_exlist_path
+	# 复制默认settings
+	cp_settings
+}
+
+#####################################################################
+
+# install_default_extensions $1
+init_default $1
