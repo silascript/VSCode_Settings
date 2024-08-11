@@ -26,11 +26,15 @@ function install_default_extensions() {
 	arr_t1=($(read_extension_list $exlist_path))
 	# echo ${arr_t1[@]}
 
-	echo "开始安装插件..."
+	sleep 0.02
+
+	echo -e "\n\e[96m开始安装插件 ... \n \e[0m"
 	# 进行批量安装
 	install_batch ${arr_t1[@]}
 
-	echo "所有插件安装完毕!"
+	sleep 0.02
+
+	echo -e "\n\e[96m所有插件安装完毕！... \n \e[0m"
 }
 
 #####################################################################
@@ -39,16 +43,16 @@ function install_default_extensions() {
 function cp_settings() {
 
 	# 将默认Profile的Settings复制到指定目录:~/.config/Code/User/
-	echo "复制settings..."
+	echo -e "\e[96m复制 settings ...\n \e[0m"
 	cp -v ./default_settings.json ~/.config/Code/User/settings.json
 
 	# 将默认快捷键配置复制到指定目录:~/.config/Code/User/
 	cp -v ./default_keybindings.json ~/.config/Code/User/keybindings.json
 
 	if [ $? -eq 0 ]; then
-		echo "settings复制成功！"
+		echo -e "\n\e[96m复制 settings 成功！\n \e[0m"
 	else
-		echo "settings复制失败！"
+		echo -e "\n\e[93m复制 settings 失败！\n \e[0m"
 	fi
 }
 

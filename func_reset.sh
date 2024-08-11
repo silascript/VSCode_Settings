@@ -22,6 +22,8 @@ function rm_vscdir() {
 	# 删除 ~/.vscode/ 目录
 	rm_dir $vscode_rootdir
 
+	sleep 0.05
+
 	# 删除 ~/.config/Code/ 目录
 	rm_dir $vscode_configdir
 }
