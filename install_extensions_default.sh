@@ -12,7 +12,10 @@ source ./func_core.sh
 function install_default_extensions() {
 
 	# 默认扩展uid列表路径
-	local exlist_defualt_path=./Extension_List/exlist_default.txt
+	local exlist_defualt_path=$1
+	if [ ! -f "$exlist_defualt_path" ]; then
+		exlist_defualt_path=./Extension_List/exlist_default.txt
+	fi
 	# 扩展uid列表路径
 	local exlist_path=$1
 
@@ -64,7 +67,8 @@ function init_default() {
 
 	# 安装默认扩展
 	install_default_extensions $default_exlist_path
-	# 复制默认settings
+	# 复制默认 settings
+	# 包括 settings.json及 keybindings.json
 	cp_settings
 }
 

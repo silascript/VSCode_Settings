@@ -1,0 +1,79 @@
+# Java Profile 扩展列表
+
+## 基础默认插件
+
+# 简繁体中文语言包
+MS-CEINTL.vscode-language-pack-zh-hans
+MS-CEINTL.vscode-language-pack-zh-hant
+
+# 简繁转换插件
+Compulim.vscode-chinese-translation
+
+# 字体选择 插件
+evan-buss.font-switcher
+
+# vim 插件
+vscodevim.vim
+
+# Catppuccin 主题
+Catppuccin.catppuccin-vsc
+
+# Icons
+thang-nm.catppuccin-perfect-icons
+
+# 路径提示 插件
+christian-kohler.path-intellisense
+
+# BookMark 插件
+alefragnani.Bookmarks
+
+# 项目管理 插件
+alefragnani.project-manager
+
+# Error Lens 插件
+usernamehw.errorlens
+
+# 注释 插件
+aaron-bond.better-comments
+
+## Java 相关插件
+
+# Redhat Java
+# 这是很多 Java 插件的基础插件
+redhat.java
+
+# java项目管理插件
+# 此插件依赖 redhat-java 插件
+vscjava.vscode-java-dependency
+
+# redhat xml 插件
+redhat.vscode-xml
+
+# 微软开发的 maven 插件
+vscjava.vscode-maven
+
+# Debugger for Java
+# 运行及 Debug 插件
+vscjava.vscode-java-debug
+
+# Test 插件
+# 此插件依赖 Redhat java 及 Debugger for Java 插件
+vscjava.vscode-java-test
+
+# Spring Boot Tools LSP插件
+vmware.vscode-spring-boot
+
+# 微软开发的用于生成SpringBoot 项目插件
+vscjava.vscode-spring-initializr
+
+# 微软开发的 Spring-Boot dashboard插件
+# 此插件依赖 Debugger for Java 插件及Spring Boot Tools插件
+vscjava.vscode-spring-boot-dashboard
+
+# Gradle 插件
+vscjava.vscode-gradle
+
+# MyBatis 插件
+yangbaopan.vscode-java-ibatisx
+
+
