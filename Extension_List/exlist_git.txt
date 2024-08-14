@@ -1,0 +1,10 @@
+# Git 相关插件
+
+# gitlens
+eamodio.gitlens
+
+# Git History
+donjayamanne.githistory
+
+# Git-Graph
+mhutchie.git-graph

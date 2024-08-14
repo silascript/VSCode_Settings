@@ -1,3 +1,8 @@
 # 前端插件列表
 
-# 
+# Volar
+Vue.volar
+
+# open-html-in-browser
+peakchen90.open-html-in-browser
+
