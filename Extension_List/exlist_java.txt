@@ -1,41 +1,5 @@
 # Java Profile 扩展列表
 
-## 基础默认插件
-
-# 简繁体中文语言包
-MS-CEINTL.vscode-language-pack-zh-hans
-MS-CEINTL.vscode-language-pack-zh-hant
-
-# 简繁转换插件
-Compulim.vscode-chinese-translation
-
-# 字体选择 插件
-evan-buss.font-switcher
-
-# vim 插件
-vscodevim.vim
-
-# Catppuccin 主题
-Catppuccin.catppuccin-vsc
-
-# Icons
-thang-nm.catppuccin-perfect-icons
-
-# 路径提示 插件
-christian-kohler.path-intellisense
-
-# BookMark 插件
-alefragnani.Bookmarks
-
-# 项目管理 插件
-alefragnani.project-manager
-
-# Error Lens 插件
-usernamehw.errorlens
-
-# 注释 插件
-aaron-bond.better-comments
-
 ## Java 相关插件
 
 # Redhat Java

@@ -3,23 +3,27 @@
 #          ╰──────────────────────────────────────────────────────────╯
 
 # 读取扩展列表
+# 可以接收多个扩展列表文件
+# 每个参数都是一个扩展列表文件路径
 function read_extension_list() {
 
-	# 列表路径
-	local exlist_path=$1
 	# 扩展 uid 数组
 	local exuid_arr=()
 
-	# 保证扩展列表存在
-	if [ -f "$exlist_path" ]; then
+	# 多个扩展列表文件
+	for exlist_path in $@; do
 
-		# 过滤掉空行及使用#注释的行
-		for line in $(cat $exlist_path | grep -v ^$ | grep -v ^\#); do
-			# 把每行扩展的 uid 存储进数组中
-			exuid_arr+=($line)
-			# echo $line
-		done
-	fi
+		# 保证扩展列表存在
+		if [ -f "$exlist_path" ]; then
+
+			# 过滤掉空行及使用#注释的行
+			for line in $(cat $exlist_path | grep -v ^$ | grep -v ^\#); do
+				# 把每行扩展的 uid 存储进数组中
+				exuid_arr+=($line)
+				# echo $line
+			done
+		fi
+	done
 
 	# 返回 扩展uid 数组
 	echo ${exuid_arr[@]}
@@ -55,6 +59,20 @@ function install_batch() {
 			sleep 0.01
 		done
 	fi
+
+}
+
+# 打印出插件数组
+# 参数是一个数组
+function print_exarr() {
+
+	local exlist_arr=($@)
+
+	# echo ${exlist_arr[@]}
+
+	for ex_temp in "${exlist_arr[@]}"; do
+		echo -e "\e[94m* \e[96m$ex_temp \e[0m"
+	done
 
 }
 

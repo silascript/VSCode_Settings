@@ -12,24 +12,47 @@ source ./func_core.sh
 function install_default_extensions() {
 
 	# 默认扩展uid列表路径
-	local exlist_defualt_path=$1
-	if [ ! -f "$exlist_defualt_path" ]; then
-		exlist_defualt_path=./Extension_List/exlist_default.txt
+	local exlist_defualt_path=./Extension_List/exlist_default.txt
+
+	# uid数组
+	arr_t1=()
+
+	if [[ $# -eq 0 ]]; then
+		# 获取扩展uid列表并构建成数组
+		arr_t1=($(read_extension_list $exlist_defualt_path))
+		# echo "无参"
+	elif [[ $# -eq 1 ]]; then
+		# 获取扩展uid列表并构建成数组
+		arr_t1=($(read_extension_list $1))
+		# echo "1个参数"
+	else # 多个扩展列表路径
+		arr_t1=($(read_extension_list "$@"))
+		# echo "多个参数"
 	fi
+
+	# echo ${arr_t1[@]}
+
+	# if [ ! -f "$exlist_defualt_path" ]; then
+	# 	exlist_defualt_path=./Extension_List/exlist_default.txt
+	# fi
+
 	# 扩展uid列表路径
-	local exlist_path=$1
+	# local exlist_path=$1
 
 	# 判断扩展uid列表路径
 	# 如果没接收到实参，则设置一个默认值
-	if [ -z "$exlist_path" ]; then
-		exlist_path=$exlist_defualt_path
-	fi
+	# if [ -z "$exlist_path" ]; then
+	# 	exlist_path=$exlist_defualt_path
+	# fi
 
-	# 获取扩展uid列表并构建成数组
-	arr_t1=($(read_extension_list $exlist_path))
 	# echo ${arr_t1[@]}
 
-	sleep 0.02
+	echo -e "\n\e[94m将要安装插件如下： \n \e[0m"
+
+	# 打印插件数组
+	print_exarr ${arr_t1[@]}
+
+	sleep 0.05
 
 	echo -e "\n\e[94m开始安装插件 ... \n \e[0m"
 	# 进行批量安装
@@ -63,10 +86,17 @@ function cp_settings() {
 function init_default() {
 
 	# 默认Profile 扩展uid列表路径
-	local default_exlist_path=$1
+	# local default_exlist_path=$1
 
-	# 安装默认扩展
-	install_default_extensions $default_exlist_path
+	# 	# 安装默认扩展
+	# install_default_extensions $default_exlist_path
+	# 接收多个扩展列表文件路径
+	install_default_extensions "$@"
+
+	# for exlist_path in "$@"; do
+	# 	install_default_extensions $exlist_path
+	# done
+
 	# 复制默认 settings
 	# 包括 settings.json及 keybindings.json
 	cp_settings
@@ -75,4 +105,4 @@ function init_default() {
 #####################################################################
 
 # install_default_extensions $1
-init_default $1
+init_default "$@"
