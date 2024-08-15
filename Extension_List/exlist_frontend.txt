@@ -1,8 +1,8 @@
 # 前端基础插件
 
-# Volar
-Vue.volar
-
 # open-html-in-browser
 peakchen90.open-html-in-browser
+
+# ESLint
+dbaeumer.vscode-eslint
 

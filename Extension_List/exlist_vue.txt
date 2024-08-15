@@ -1,0 +1,8 @@
+# Vue 相关插件
+
+# Vue官方插件
+Vue.volar
+
+# snippets
+# exer7um.vue-3-vscode-snippets
+
