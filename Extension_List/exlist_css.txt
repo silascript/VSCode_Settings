@@ -1,0 +1,8 @@
+# CSS 相关插件
+
+
+# 用于跳转CSS定义
+pranaygp.vscode-css-peek
+
+# html中id或class选择已定义相关样式
+ecmel.vscode-html-css

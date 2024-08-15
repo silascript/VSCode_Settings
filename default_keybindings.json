@@ -9,5 +9,16 @@
 	{
 		"key": "ctrl+j",
 		"command": "-workbench.action.togglePanel"
+	},
+	// 代码提示触发
+	{
+		"key": "alt+/",
+		"command": "editor.action.triggerSuggest",
+		"when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+	},
+	{
+		"key": "ctrl+i",
+		"command": "-editor.action.triggerSuggest",
+		"when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
 	}
 ]

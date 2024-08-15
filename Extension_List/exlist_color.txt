@@ -1,0 +1,10 @@
+# 颜色相关插件
+
+# 取色器
+# lihui.vs-color-picker
+# MarkosTh09.color-picker
+
+# csv 上色
+mechatroner.rainbow-csv
+
+
