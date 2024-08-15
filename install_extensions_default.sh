@@ -17,19 +17,20 @@ function install_default_extensions() {
 	# uid数组
 	arr_t1=()
 
-	if [[ $# -eq 0 ]]; then
-		# 获取扩展uid列表并构建成数组
-		arr_t1=($(read_extension_list $exlist_defualt_path))
-		# echo "无参"
-	elif [[ $# -eq 1 ]]; then
-		# 获取扩展uid列表并构建成数组
-		arr_t1=($(read_extension_list $1))
-		# echo "1个参数"
-	else # 多个扩展列表路径
-		arr_t1=($(read_extension_list "$@"))
-		# echo "多个参数"
-	fi
+	# if [[ $# -eq 0 ]]; then
+	# 	# 获取扩展uid列表并构建成数组
+	# 	arr_t1=($(read_extension_list $exlist_defualt_path))
+	# 	# echo "无参"
+	# elif [[ $# -eq 1 ]]; then
+	# 	# 获取扩展uid列表并构建成数组
+	# 	arr_t1=($(read_extension_list $1))
+	# 	# echo "1个参数"
+	# else # 多个扩展列表路径
+	# 	arr_t1=($(read_extension_list "$@"))
+	# 	# echo "多个参数"
+	# fi
 
+	arr_t1=($(read_extension_list "$@"))
 	# echo ${arr_t1[@]}
 
 	# if [ ! -f "$exlist_defualt_path" ]; then
@@ -82,6 +83,10 @@ function cp_settings() {
 	fi
 }
 
+# 根据插件列表为默认Profile安装插件
+# 可传入任意插件列表文件路径
+# 此函数不会自动安装默认插件
+# 故至少传入一个插件列表文件路径
 function init_default_any() {
 
 	# 默认Profile 扩展uid列表路径
@@ -93,18 +98,27 @@ function init_default_any() {
 	local exlist_arr=($@)
 
 	# echo ${exlist_arr[@]}
-	install_default_extensions "${exlist_arr[@]}"
 
-	# for exlist_path in "$@"; do
-	# 	install_default_extensions $exlist_path
-	# done
+	# 去除 `-a` 选项参数
+	if [[ $1 == "-a" ]]; then
+		unset exlist_arr[0]
+	fi
 
-	# 复制默认 settings
-	# 包括 settings.json及 keybindings.json
-	cp_settings
+	if [ "${#exlist_arr[@]}" -eq 0 ]; then
+		echo -e "\e[93m没有指定扩展列表文件！\n \e[0m"
+	else
+		install_default_extensions "${exlist_arr[@]}"
+		# 复制默认 settings
+		# 包括 settings.json及 keybindings.json
+		cp_settings
+	fi
+
 }
 
-# 初始化默认Profile
+# 根据插件列表为默认Profile安装插件
+# 无论有没有传入插件列表参数都会安装默认插件
+# 故此函数可以无参执行
+# 默认插件列表默认路径：./Extension_List/exlist_default.txt
 function init_default() {
 
 	# 参数列表数组
@@ -118,23 +132,30 @@ function init_default() {
 	# 路径文件是否已经存在参数数组
 	local path_exists="true"
 
-	for element in "${arg_list[@]}"; do
-		# 绝对路径是否相同
-		if [[ $(readlink -f $element) == $(readlink -f $default_exlist_path) ]]; then
-			path_exists="true"
-			break
-		fi
-
-		path_exists="false"
-	done
-
-	# echo $path_exists
-
-	# 如果参数数组不存在默认插件列表
-	# 将默认插件列表路径加入到数组中
-	if [ $path_exists == "false" ]; then
-		# echo "没给默认插件列表文件路径"
+	# 如果没有参数
+	if [[ $# -eq 0 ]]; then
+		# 加上默认插件列表
 		arg_list+=($default_exlist_path)
+	else
+
+		for element in "${arg_list[@]}"; do
+			# 绝对路径是否相同
+			if [[ $(readlink -f $element) == $(readlink -f $default_exlist_path) ]]; then
+				path_exists="true"
+				break
+			fi
+
+			path_exists="false"
+		done
+
+		# echo $path_exists
+
+		# 如果参数数组不存在默认插件列表
+		# 将默认插件列表路径加入到数组中
+		if [ $path_exists == "false" ]; then
+			# echo "没给默认插件列表文件路径"
+			arg_list+=($default_exlist_path)
+		fi
 	fi
 
 	# echo "${arg_list[@]}"
