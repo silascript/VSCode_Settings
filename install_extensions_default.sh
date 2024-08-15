@@ -82,8 +82,7 @@ function cp_settings() {
 	fi
 }
 
-# 初始化默认Profile
-function init_default() {
+function init_default_any() {
 
 	# 默认Profile 扩展uid列表路径
 	# local default_exlist_path=$1
@@ -91,7 +90,10 @@ function init_default() {
 	# 	# 安装默认扩展
 	# install_default_extensions $default_exlist_path
 	# 接收多个扩展列表文件路径
-	install_default_extensions "$@"
+	local exlist_arr=($@)
+
+	# echo ${exlist_arr[@]}
+	install_default_extensions "${exlist_arr[@]}"
 
 	# for exlist_path in "$@"; do
 	# 	install_default_extensions $exlist_path
@@ -102,7 +104,49 @@ function init_default() {
 	cp_settings
 }
 
+# 初始化默认Profile
+function init_default() {
+
+	# 参数列表数组
+	local arg_list=($@)
+
+	# 默认插件列表
+	local default_exlist_path="./Extension_List/exlist_default.txt"
+	# 默认插件列表的md5值
+	# local md5v_default_exlist_file=$(md5sum $default_exlist_path)
+
+	# 路径文件是否已经存在参数数组
+	local path_exists="true"
+
+	for element in "${arg_list[@]}"; do
+		# 绝对路径是否相同
+		if [[ $(readlink -f $element) == $(readlink -f $default_exlist_path) ]]; then
+			path_exists="true"
+			break
+		fi
+
+		path_exists="false"
+	done
+
+	# echo $path_exists
+
+	# 如果参数数组不存在默认插件列表
+	# 将默认插件列表路径加入到数组中
+	if [ $path_exists == "false" ]; then
+		# echo "没给默认插件列表文件路径"
+		arg_list+=($default_exlist_path)
+	fi
+
+	# echo "${arg_list[@]}"
+
+	init_default_any "${arg_list[@]}"
+}
+
 #####################################################################
 
 # install_default_extensions $1
-init_default "$@"
+if [ "$1" == "-a" ]; then
+	init_default_any "$@"
+else
+	init_default "$@"
+fi
