@@ -10,6 +10,9 @@ redhat.java
 # 此插件依赖 redhat-java 插件
 vscjava.vscode-java-dependency
 
+# Java 生成插件
+sohibe.java-generate-setters-getters
+
 # redhat xml 插件
 redhat.vscode-xml
 

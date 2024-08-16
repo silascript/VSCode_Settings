@@ -1,0 +1,6 @@
+# 杂项插件
+
+# 补分号插件
+# seunghwan.smartsemicolon
+# IrishBruse.smartersemicolon
+myaaghubi.auto-semicolon-vscode
