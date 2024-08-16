@@ -1,0 +1,5 @@
+# 通用依赖管理插件
+
+# 依赖管理
+# 支持 Rust、Golang、Python、JS、PHP
+fill-labs.dependi

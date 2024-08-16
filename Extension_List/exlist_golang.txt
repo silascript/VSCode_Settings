@@ -1,0 +1,7 @@
+# golang 相关插件
+
+# Go for VSCode
+golang.Go
+
+# 运行代码
+formulahendry.code-runner

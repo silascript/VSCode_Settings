@@ -12,7 +12,7 @@ init_vscode() {
 	rm_vscdir
 
 	echo -e "\e[96m 重启VSCode ...\n \e[0m"
-	sleep 2s
+	sleep 0.5s
 	# 重启 VSCode
 	# VSCode 会自动生成 ~/.vscode/ 及 ~/.config/Code/ 目录
 	code

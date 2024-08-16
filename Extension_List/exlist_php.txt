@@ -1,0 +1,7 @@
+# PHP 相关插件
+
+# 语言服务
+bmewburn.vscode-intelephense-client
+
+# Debug
+xdebug.php-debug

@@ -1,0 +1,12 @@
+# Rust 相关插件
+
+# rust主要的语言服务插件
+rust-lang.rust-analyzer
+
+# Rust 依赖管理
+# serayuzgur.crates
+fill-labs.dependi
+
+
+# Toml 插件
+tamasfe.even-better-toml
