@@ -12,7 +12,7 @@ source ./func_core.sh
 function install_default_extensions() {
 
 	# 默认扩展uid列表路径
-	local exlist_defualt_path=./Extension_List/exlist_default.txt
+	# local exlist_defualt_path=./Extension_List/exlist_default.txt
 
 	# uid数组
 	arr_t1=()
