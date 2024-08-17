@@ -1,18 +1,41 @@
 # 图标包
 
 # Material Icon Theme
-PKief.material-icon-theme
+# PKief.material-icon-theme
 
 # Material Theme Icons — Free
 # Equinusocio.vsc-material-theme-icons
 
+# lucodear icons
+# fork of Material icons
+lucaslabs.lucodear-icons
+
 # vscode-icons
 # vscode-icons-team.vscode-icons
+
+# Moxer icons
+# Equinusocio.moxer-icons
+
+# Gruvbox Material icons
+# navernoedenis.gruvbox-material-icons
+
+# Great icons
+emmanuelbeziat.vscode-great-icons
+
+# Better File Icons
+# lukedavis.better-file-icons
+
+# Great Dark Icons
+# sean0717.great-dark-icons
 
 # Catppuccin Icons for VSCode
 # Catppuccin.catppuccin-vsc-icons
 
 # Catppuccin Perfect icons
 # thang-nm.catppuccin-perfect-icons
+
+# Bearded icons
+# BeardedBear.beardedicons
+
 
 

@@ -7,7 +7,7 @@
 	// 窗口样式
 	"window.menuBarVisibility": "toggle",
 	"window.titleBarStyle": "custom",
-	"window.zoomLevel": 1,
+	"window.zoomLevel": 1.5,
 	// vim
 	"vim.easymotion": true,
 	"vim.highlightedyank.enable": true,
