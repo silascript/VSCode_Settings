@@ -14,10 +14,10 @@ evan-buss.font-switcher
 vscodevim.vim
 
 # Catppuccin 主题
-Catppuccin.catppuccin-vsc
+# Catppuccin.catppuccin-vsc
 
 # Icons
-thang-nm.catppuccin-perfect-icons
+# thang-nm.catppuccin-perfect-icons
 
 # 路径提示 插件
 christian-kohler.path-intellisense

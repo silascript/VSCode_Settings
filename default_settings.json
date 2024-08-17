@@ -1,9 +1,9 @@
 {
 	"workbench.startupEditor": "none",
 	// 主题
-	"workbench.colorTheme": "Catppuccin Macchiato",
-	"workbench.iconTheme": "catppuccin-perfect-macchiato",
-	"catppuccin.accentColor": "green",
+	// "workbench.colorTheme": "Catppuccin Macchiato",
+	// "workbench.iconTheme": "catppuccin-perfect-macchiato",
+	// "catppuccin.accentColor": "green",
 	// 窗口样式
 	"window.menuBarVisibility": "toggle",
 	"window.titleBarStyle": "custom",
