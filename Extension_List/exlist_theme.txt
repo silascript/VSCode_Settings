@@ -1,0 +1,17 @@
+# 主题包
+
+# Material Theme
+# Equinusocio.vsc-material-theme
+
+# Gruvbox
+# jdinhlife.gruvbox
+
+# Catppuccin
+Catppuccin.catppuccin-vsc
+
+# Monokai pro 
+# 这主题带了icon
+# monokai.theme-monokai-pro-vscode
+
+# Bearded Theme
+BeardedBear.beardedtheme

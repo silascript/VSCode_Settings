@@ -4,17 +4,15 @@
 PKief.material-icon-theme
 
 # Material Theme Icons — Free
-Equinusocio.vsc-material-theme-icons
+# Equinusocio.vsc-material-theme-icons
 
 # vscode-icons
-vscode-icons-team.vscode-icons
+# vscode-icons-team.vscode-icons
 
 # Catppuccin Icons for VSCode
-Catppuccin.catppuccin-vsc-icons
+# Catppuccin.catppuccin-vsc-icons
 
 # Catppuccin Perfect icons
-thang-nm.catppuccin-perfect-icons
+# thang-nm.catppuccin-perfect-icons
 
-# Monokai pro icons
-monokai.theme-monokai-pro-vscode
 
