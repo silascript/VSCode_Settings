@@ -31,6 +31,13 @@ alefragnani.project-manager
 # Error Lens 插件
 usernamehw.errorlens
 
+# sinppet 插件
+robole.snippets-ranger
+
 # 注释 插件
 aaron-bond.better-comments
+
+# 自动生成文档注释 插件
+mintlify.document
+
 

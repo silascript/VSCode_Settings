@@ -20,7 +20,7 @@ lucaslabs.lucodear-icons
 # navernoedenis.gruvbox-material-icons
 
 # Great icons
-emmanuelbeziat.vscode-great-icons
+# emmanuelbeziat.vscode-great-icons
 
 # Better File Icons
 # lukedavis.better-file-icons
