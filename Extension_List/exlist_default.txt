@@ -40,4 +40,8 @@ aaron-bond.better-comments
 # 自动生成文档注释 插件
 mintlify.document
 
+# 拼写检查
+streetsidesoftware.code-spell-checker
+
+
 
