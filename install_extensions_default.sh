@@ -52,13 +52,13 @@ function install_default_extensions() {
 	echo -e "\n\e[94m将要安装插件如下： \n \e[0m"
 
 	# 打印插件数组
-	print_exarr ${arr_t1[@]}
+	print_exarr "${arr_t1[@]}"
 
 	sleep 0.05
 
 	echo -e "\n\e[94m开始安装插件 ... \n \e[0m"
 	# 进行批量安装
-	install_batch ${arr_t1[@]}
+	install_batch "${arr_t1[@]}"
 
 	sleep 0.02
 

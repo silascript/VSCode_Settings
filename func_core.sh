@@ -13,7 +13,7 @@ function read_extension_list() {
 	local exuid_arr=()
 
 	# 多个扩展列表文件
-	for exlist_path in $@; do
+	for exlist_path in "$@"; do
 
 		# 保证扩展列表存在
 		if [ -f "$exlist_path" ]; then
@@ -28,7 +28,7 @@ function read_extension_list() {
 	done
 
 	# 返回 扩展uid 数组
-	echo ${exuid_arr[@]}
+	echo "${exuid_arr[@]}"
 	# echo "${exuid_arr[@]}"
 
 }
