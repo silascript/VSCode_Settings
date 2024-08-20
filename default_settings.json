@@ -60,7 +60,6 @@
 		"editor.renderLineHighlight",
 		"window.menuBarVisibility",
 		"window.titleBarStyle",
-		"window.zoomLevel",
 		"workbench.list.smoothScrolling",
 		"debug.showBreakpointsInOverviewRuler",
 		"vim.easymotion",
