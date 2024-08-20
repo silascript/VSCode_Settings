@@ -81,5 +81,6 @@
 		".vscode",
 		".vscode-insiders",
 		"**/settings.json"
-	]
+	],
+	"settingsSync.ignoredSettings": []
 }
