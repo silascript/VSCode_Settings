@@ -11,3 +11,6 @@ ms-python.debugpy
 # Python Environment Manager
 donjayamanne.python-environment-manager
 
+# ruff for vscode
+charliermarsh.ruff
+
