@@ -69,7 +69,7 @@
 		"errorLens.delay"
 	],
 
-	"workbench.experimental.enableNewProfilesUI": true,
+	// "workbench.experimental.enableNewProfilesUI": true,
 
 	// Code Spell Checker 插件设置
 	"cSpell.diagnosticLevel": "Hint",
