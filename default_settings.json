@@ -26,7 +26,7 @@
 	"terminal.integrated.fontSize": 18,
 	// minimap
 	"editor.minimap.maxColumn": 80,
-	"editor.minimap.autohide": true,
+	"editor.minimap.autohide": "mouseover",
 	// 补全设置
 	"editor.quickSuggestions": {
 		"other": true,
