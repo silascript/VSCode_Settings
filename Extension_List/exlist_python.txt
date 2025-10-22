@@ -9,7 +9,8 @@ ms-python.python
 ms-python.debugpy
 
 # Python Environment Manager
-donjayamanne.python-environment-manager
+# donjayamanne.python-environment-manager
+ms-python.vscode-python-envs
 
 # ruff for vscode
 charliermarsh.ruff
