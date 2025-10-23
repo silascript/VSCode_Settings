@@ -82,5 +82,8 @@
 		".vscode-insiders",
 		"**/settings.json"
 	],
-	"settingsSync.ignoredSettings": []
+	"settingsSync.ignoredSettings": [],
+	"workbench.settings.showAISearchToggle": false,
+	"chat.todoListTool.descriptionField": false,
+	"chat.disableAIFeatures": true
 }
