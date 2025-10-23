@@ -6,7 +6,7 @@
 	// "catppuccin.accentColor": "green",
 	// "workbench.colorTheme": "Gruvbox Dark Hard",
 	// "workbench.iconTheme": "lucodear-icons",
-	"lucodear-icons.hidesExplorerArrows": true,
+	// "lucodear-icons.hidesExplorerArrows": true,
 
 	// 窗口样式
 	"window.menuBarVisibility": "toggle",
