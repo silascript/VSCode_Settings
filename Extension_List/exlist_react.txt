@@ -1,0 +1,4 @@
+# React 相关插件
+
+# ES7+ React/Redux/React-Native snippets
+dsznajder.es7-react-js-snippets

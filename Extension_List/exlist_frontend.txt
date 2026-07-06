@@ -1,7 +1,9 @@
 # 前端基础插件
 
 # open-html-in-browser
-peakchen90.open-html-in-browser
+#peakchen90.open-html-in-browser
+# 可以自行设置浏览器
+fabiospampinato.vscode-open-in-browsers
 
 # ESLint
 dbaeumer.vscode-eslint
