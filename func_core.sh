@@ -4,6 +4,43 @@
 #          │						核心函数                          │
 #          ╰──────────────────────────────────────────────────────────╯
 
+# 创建一个Profile
+# 参数：Profile 名称
+function create_profile() {
+
+	# Profile 名称
+	local profile_name=$1
+
+	# storage.json文件路径
+	local storage_file="$HOME/.config/Code/User/globalStorage/storage.json"
+
+	if [[ $# -eq 0 ]]; then
+		echo -e "\e[93m缺少要创建的 Profile 名称！\n \e[0m"
+		return
+	fi
+
+	# 检测 storage.json文件中 userDataProfiles 节点是否存在
+	# 如果一个自定义的Profile都没有创建，userDataProfile 节点是不存在的
+	local userDataProfiles_exists=$(jq 'has("userDataProfiles")' $storage_file)
+
+	if $userDataProfiles_exists; then
+		# 检测 Profile 是否已经创建
+		local profile_exists=$(jq --arg p_name $profile_name '.userDataProfiles[] | .name==$p_name' $storage_file)
+
+		if $profile_exists; then
+			echo -e "\e[93m$profile_name已经存在！无须再创建！\e[0m"
+		else
+			# 创建 Profile
+			code --profile "$profile_name"
+		fi
+
+	else
+		# 创建 Profile
+		code --profile "$profile_name"
+	fi
+
+}
+
 # 读取扩展列表
 # 可以接收多个扩展列表文件
 # 每个参数都是一个扩展列表文件路径
@@ -34,6 +71,7 @@ function read_extension_list() {
 }
 
 # 安装扩展
+# 参数：扩展id
 function install_extension() {
 	# 扩展的UID，即 Unique Identifier
 	local extension_uid=$1
@@ -43,8 +81,23 @@ function install_extension() {
 
 }
 
-# 批量安装扩展
-# 参数为扩展数组
+# 为某Profile安装扩展
+# 参数1: Profile 名称
+# 参数2: 扩展id
+function install_extension_profile() {
+
+	# Profile 名称
+	local profile_name=$1
+
+	# 扩展的UID，即 Unique Identifier
+	local extension_uid=$2
+
+	# 安装扩展
+	code --profile $profile_name --install-extension $extension_uid
+
+}
+# 为默认Profile批量安装扩展
+# 参数：扩展id数组
 function install_batch() {
 
 	# 扩展 uid 数组
@@ -64,6 +117,34 @@ function install_batch() {
 
 }
 
+# 为某Profile批量安装扩展
+# 参数1：Profile 名称
+# 参数2：扩展id数组
+function install_batch_profile() {
+
+	# Profile 名称
+	local profile_name=$1
+
+	# 移除第一个参数
+	shift
+
+	# 扩展 uid 数组
+	local exuid_arr=($@)
+
+	# echo ${exuid_arr[@]}
+
+	if [ ${#exuid_arr[@]} -eq 0 ]; then
+		echo -e "\e[93m扩展列表为空！\e[96m...\n \e[0m"
+	else
+		for exui in "${exuid_arr[@]}"; do
+			# 为Profile安装扩展
+			# install_extension $exui
+			install_extension_profile $profile_name $exui
+			sleep 0.01
+		done
+	fi
+
+}
 # 打印出插件数组
 # 参数是一个数组
 function print_exarr() {
@@ -111,3 +192,17 @@ function print_exarr() {
 # echo ${arr_t1[@]}
 # 进行批量安装
 # install_batch ${arr_t1[@]}
+
+# --------------------------------------------------
+
+# 测试创建Profile
+# create_profile
+# create_profile Test_Profile
+
+# --------------------------------------------------
+
+# 测试为某Profile安装扩展
+
+# --------------------------------------------------
+
+# 测试为某Profile 批量安装扩展
