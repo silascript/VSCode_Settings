@@ -40,13 +40,15 @@ function create_profile() {
 
 	# 检测 storage.json文件中 userDataProfiles 节点是否存在
 	# 如果一个自定义的Profile都没有创建，userDataProfile 节点是不存在的
-	local userDataProfiles_exists=$(jq 'has("userDataProfiles")' $storage_file)
-
+	# local userDataProfiles_exists=$(jq 'has("userDataProfiles")' $storage_file)
+	local userDataProfiles_exists=$(exists_userdataprofile_node $storage_file)
 	if $userDataProfiles_exists; then
 		# 检测 Profile 是否已经创建
-		local profile_exists=$(jq --arg p_name $profile_name '.userDataProfiles[] | .name==$p_name' $storage_file)
+		local profile_exists=$(jq --arg p_name $profile_name '.userDataProfiles[] | select(.name==$p_name) | .name==$p_name' $storage_file)
 
-		if $profile_exists; then
+		# echo $profile_exists
+
+		if [[ $profile_exists == "true" ]]; then
 			# echo -e "\e[36m$profile_name \e[93mProfile已经存在，无须再创建！\e[0m"
 			echo -e "\e[96m$profile_name \e[93mProfile已经存在，无须再创建！\e[0m"
 		else
@@ -264,6 +266,8 @@ function print_exarr() {
 # 测试创建Profile
 # create_profile
 # create_profile Test_Profile
+# create_profile Test_P
+# create_profile "$@"
 
 # --------------------------------------------------
 
