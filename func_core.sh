@@ -15,7 +15,7 @@ function create_profile() {
 	local storage_file="$HOME/.config/Code/User/globalStorage/storage.json"
 
 	if [[ $# -eq 0 ]]; then
-		echo -e "\e[93m缺少要创建的 Profile 名称！\n \e[0m"
+		echo -e "\e[93m请给一个要创建的 Profile 名称！\n \e[0m"
 		return
 	fi
 
@@ -28,14 +28,16 @@ function create_profile() {
 		local profile_exists=$(jq --arg p_name $profile_name '.userDataProfiles[] | .name==$p_name' $storage_file)
 
 		if $profile_exists; then
-			echo -e "\e[93m$profile_name已经存在！无须再创建！\e[0m"
+			# echo -e "\e[36m$profile_name \e[93mProfile已经存在，无须再创建！\e[0m"
+			echo -e "\e[96m$profile_name \e[93mProfile已经存在，无须再创建！\e[0m"
 		else
 			# 创建 Profile
+			echo -e "\e[92m创建Profile \e[96m$profile_name \e[92m... \e[0m"
 			code --profile "$profile_name"
 		fi
-
 	else
 		# 创建 Profile
+		echo -e "\e[92m创建Profile \e[96m$profile_name \e[92m... \e[0m"
 		code --profile "$profile_name"
 	fi
 
@@ -70,7 +72,8 @@ function read_extension_list() {
 
 }
 
-# 安装扩展
+# 安装单个扩展
+# 安装到默认Profile
 # 参数：扩展id
 function install_extension() {
 	# 扩展的UID，即 Unique Identifier
@@ -81,7 +84,7 @@ function install_extension() {
 
 }
 
-# 为某Profile安装扩展
+# 为某Profile安装单个扩展
 # 参数1: Profile 名称
 # 参数2: 扩展id
 function install_extension_profile() {
@@ -91,6 +94,12 @@ function install_extension_profile() {
 
 	# 扩展的UID，即 Unique Identifier
 	local extension_uid=$2
+
+	# 判断参数是否给全
+	if [[ $# -lt 2 ]]; then
+		echo -e "\e[93m请给出Profile名称及扩展id！\n \e[0m"
+		return
+	fi
 
 	# 安装扩展
 	code --profile $profile_name --install-extension $extension_uid
@@ -121,6 +130,12 @@ function install_batch() {
 # 参数1：Profile 名称
 # 参数2：扩展id数组
 function install_batch_profile() {
+
+	# 判断参数是否给全
+	if [[ $# -lt 2 ]]; then
+		echo -e "\e[93m请给出Profile名称及扩展id！\n \e[0m"
+		return
+	fi
 
 	# Profile 名称
 	local profile_name=$1
@@ -203,6 +218,14 @@ function print_exarr() {
 
 # 测试为某Profile安装扩展
 
+# install_extension_profile
+# install_extension_profile Test_Profile
+# install_extension_profile Test_Profile redhat.java
+
 # --------------------------------------------------
 
 # 测试为某Profile 批量安装扩展
+# install_batch_profile
+# install_batch_profile Test_Profile
+# install_batch_profile Test_Profile redhat.java
+# install_batch_profile Test_Profile redhat.java eamodio.gitlens
