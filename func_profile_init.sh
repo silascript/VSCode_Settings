@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #          ╭──────────────────────────────────────────────────────────╮
-#          │                 安装扩展核心函数                    │
+#          │                 Pfofile 初始化核心函数                   │
 #          ╰──────────────────────────────────────────────────────────╯
 
 #####################################################################
@@ -12,39 +12,10 @@ source ./func_core.sh
 # 安装扩展
 function install_extensions_core() {
 
-
 	# uid数组
 	local arr_t1=()
 
-	# if [[ $# -eq 0 ]]; then
-	# 	# 获取扩展uid列表并构建成数组
-	# 	arr_t1=($(read_extension_list $exlist_defualt_path))
-	# 	# echo "无参"
-	# elif [[ $# -eq 1 ]]; then
-	# 	# 获取扩展uid列表并构建成数组
-	# 	arr_t1=($(read_extension_list $1))
-	# 	# echo "1个参数"
-	# else # 多个扩展列表路径
-	# 	arr_t1=($(read_extension_list "$@"))
-	# 	# echo "多个参数"
-	# fi
-
 	arr_t1=($(read_extension_list "$@"))
-	# echo ${arr_t1[@]}
-
-	# if [ ! -f "$exlist_defualt_path" ]; then
-	# 	exlist_defualt_path=./Extension_List/exlist_default.txt
-	# fi
-
-	# 扩展uid列表路径
-	# local exlist_path=$1
-
-	# 判断扩展uid列表路径
-	# 如果没接收到实参，则设置一个默认值
-	# if [ -z "$exlist_path" ]; then
-	# 	exlist_path=$exlist_defualt_path
-	# fi
-
 	# echo ${arr_t1[@]}
 
 	echo -e "\n\e[94m将要安装插件如下： \n \e[0m"
@@ -66,55 +37,72 @@ function install_extensions_core() {
 #####################################################################
 
 # 复制配置文件settings到指定目录
-function cp_settings() {
-	
-	local profile_dir_name=$1
+# function cp_settings() {
+#
+# 	local profile_dir_name=$1
+#
+# 	# 当前脚本的绝对路径
+# 	local current_path=$(cd `dirname $0`;pwd)
+#
+# 	# 将默认Profile的Settings复制到指定目录:~/.config/Code/User/
+# 	echo -e "\e[94m复制 settings ...\n \e[0m"
+# 	cp -v "${current_path}/default_settings.json" "$HOME/.config/Code/User/${profile_dir_name}/settings.json"
+#
+# 	# 将默认快捷键配置复制到指定目录:~/.config/Code/User/
+# 	cp -v "${current_path}/default_keybindings.json" "$HOME/.config/Code/User/${profile_dir_name}/keybindings.json"
+#
+# 	if [ $? -eq 0 ]; then
+# 		echo -e "\n \e[96m复制 settings 成功！\n \e[0m"
+# 	else
+# 		echo -e "\n \e[93m复制 settings 失败！\n \e[0m"
+# 	fi
+# }
 
-	# 当前脚本的绝对路径
-	local current_path=$(cd `dirname $0`;pwd)
-
-	# 将默认Profile的Settings复制到指定目录:~/.config/Code/User/
-	echo -e "\e[94m复制 settings ...\n \e[0m"
-	cp -v "${current_path}/default_settings.json" "$HOME/.config/Code/User/${profile_dir_name}/settings.json"
-
-	# 将默认快捷键配置复制到指定目录:~/.config/Code/User/
-	cp -v "${current_path}/default_keybindings.json" "$HOME/.config/Code/User/${profile_dir_name}/keybindings.json"
-
-	if [ $? -eq 0 ]; then
-		echo -e "\n\e[96m复制 settings 成功！\n \e[0m"
-	else
-		echo -e "\n\e[93m复制 settings 失败！\n \e[0m"
-	fi
+# 复制配置文件到指定的Profile目录
+# 参数1：Profile location
+# 参数2：预配置文件
+# 某Profile配置文件路径：~/.config/Code/User/profiles/Profile id/settings.json
+function cp_settings_profile() {
+	# Profile location
+	local profile_location=$1
+	# 预配置文件
+	local settings_file=$2
 }
 
-# 根据插件列表为默认Profile安装插件
-# 可传入任意插件列表文件路径
+# 初始化指定Profile
+# 参数1：Profile 名称
+# 参数2: 可传入任意插件列表文件路径
 # 此函数不会自动安装默认插件
 # 故至少传入一个插件列表文件路径
-function init_default_any() {
+function init_profile_any() {
 
 	# 默认Profile 扩展uid列表路径
 	# local default_exlist_path=$1
 
-	# 	# 安装默认扩展
-	# install_default_extensions $default_exlist_path
+	local profile_name=$1
+
+	# 移除第一个参数
+	shift
+
 	# 接收多个扩展列表文件路径
 	local exlist_arr=($@)
 
 	# echo ${exlist_arr[@]}
 
 	# 去除 `-a` 选项参数
-	if [[ $1 == "-a" ]]; then
-		unset exlist_arr[0]
-	fi
+	# if [[ $1 == "-a" ]]; then
+	# 	unset exlist_arr[0]
+	# fi
 
 	if [ "${#exlist_arr[@]}" -eq 0 ]; then
 		echo -e "\e[93m没有指定扩展列表文件！\n \e[0m"
 	else
-		install_default_extensions "${exlist_arr[@]}"
-		# 复制默认 settings
+		#  根据扩展列表，安装默认扩展
+		install_extensions_core "${exlist_arr[@]}"
+
+		# 复制预设 settings 到指定Profile目录
 		# 包括 settings.json及 keybindings.json
-		cp_settings
+		cp_settings_profile
 	fi
 
 }
@@ -170,8 +158,8 @@ function init_default() {
 #####################################################################
 
 # install_default_extensions $1
-if [ "$1" == "-a" ]; then
-	init_default_any "$@"
-else
-	init_default "$@"
-fi
+# if [ "$1" == "-a" ]; then
+# 	init_default_any "$@"
+# else
+# 	init_default "$@"
+# fi

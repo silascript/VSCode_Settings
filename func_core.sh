@@ -4,6 +4,25 @@
 #          │						核心函数                          │
 #          ╰──────────────────────────────────────────────────────────╯
 
+# 检测userDataProfiles 节点是否存在
+# 在~/.config/Code/User/globalStorage/storage.json中
+# 如果没有创建任何一个自定义Profile，storage.json中的userDataProfiles节点是不存在的
+# 参数：storage.json文件路径，如果不给，则使用默认值
+# 返回：存在为true，反之为false
+function exists_userdataprofile_node() {
+
+	# storage.json文件路径
+	local storage_file=$1
+	if [[ $# -eq 0 ]]; then
+		storage_file="$HOME/.config/Code/User/globalStorage/storage.json"
+	fi
+
+	local exists_result=$(jq 'has("userDataProfiles")' $storage_file)
+
+	# 返回检测结果
+	echo $exists_result
+}
+
 # 创建一个Profile
 # 参数：Profile 名称
 function create_profile() {
@@ -43,9 +62,35 @@ function create_profile() {
 
 }
 
-# 读取扩展列表
+# 通过Profile 名称获取Profile的location值
+# Profile 的location值就是Profile存储目录的目录名
+# ~/.config/Code/User/profiles/profile location/
+# 参数1：Profile 名称
+# 返回：Profile location 值
+function getProfileLocationByProfileName() {
+
+	# storage.json文件路径
+	local storage_file="$HOME/.config/Code/User/globalStorage/storage.json"
+
+	# Profile 名称
+	local profile_name=$1
+
+	local profile_location
+
+	# jq -r '.userDataProfiles[] | .name="Test_Profile"|.location' ~/.config/Code/User/globalStorage/storage.json
+
+	# 获取 Profile location 值
+	profile_location=$(jq -r --arg p_name $profile_name '.userDataProfiles[] | .name=$p_name |.location' $storage_file)
+
+	# 返回 Profile location值
+	echo $profile_location
+
+}
+
+# 读取扩展列表并解析
 # 可以接收多个扩展列表文件
 # 每个参数都是一个扩展列表文件路径
+# 返回扩展id数组
 function read_extension_list() {
 
 	# 扩展 uid 数组
@@ -207,6 +252,12 @@ function print_exarr() {
 # echo ${arr_t1[@]}
 # 进行批量安装
 # install_batch ${arr_t1[@]}
+
+# --------------------------------------------------
+
+# 测试检测userDataProfiles节点是否存在的函数
+# exists_userdataprofile_node
+# exists_userdataprofile_node $HOME/.config/Code/User/globalStorage/storage.json
 
 # --------------------------------------------------
 
