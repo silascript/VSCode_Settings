@@ -46,6 +46,55 @@ t1() {
 
 }
 
+# 读取扩展列表并解析
+# 可以接收多个扩展列表文件
+# 每个参数都是一个扩展列表文件路径
+# 返回扩展id
+function t2() {
+
+	# 扩展 uid 数组
+	local exuid_arr=()
+
+	# 多个扩展列表文件
+	for exlist_path in "$@"; do
+
+		# 保证扩展列表存在
+		if [ -f "$exlist_path" ]; then
+
+			# 过滤掉空行及使用#注释的行
+			# for line in $(cat $exlist_path | grep -v ^$ | grep -v ^\#); do
+			# 把每行扩展的 uid 存储进数组中
+			# exuid_arr+=($line)
+			# echo $line
+			# done
+
+			cat $exlist_path | grep -v ^$ | grep -v ^\# | xargs echo
+
+		fi
+	done
+
+	# 返回 扩展uid 数组
+	# echo "${exuid_arr[@]}"
+
+}
+
 # ///////////////////////////////测试///////////////////////////////
 
-t1 "$@"
+# 测试 t1函数
+# t1 "$@"
+
+# ////////////////////////////////////////////////////////////////////
+
+# 测试 t2函数
+# 构建成一个数组
+exid_arr=($(t2 ./Extension_List/exlist_default.txt ./Extension_List/exlist_java.txt))
+# exid_arr=($(t2 ./Extension_List/exlist_default.txt))
+
+# 数组数量
+echo ${#exid_arr[@]}
+
+# 显示数组每个元素
+echo "${exid_arr[@]}"
+
+
+

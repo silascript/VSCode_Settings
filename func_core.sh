@@ -105,18 +105,17 @@ function read_extension_list() {
 		if [ -f "$exlist_path" ]; then
 
 			# 过滤掉空行及使用#注释的行
-			for line in $(cat $exlist_path | grep -v ^$ | grep -v ^\#); do
-				# 把每行扩展的 uid 存储进数组中
-				exuid_arr+=($line)
-				# echo $line
-			done
+			# for line in $(cat $exlist_path | grep -v ^$ | grep -v ^\#); do
+			# 	# 把每行扩展的 uid 存储进数组中
+			# 	exuid_arr+=($line)
+			# 	# echo $line
+			# done
+			cat $exlist_path | grep -v ^$ | grep -v ^\# | xargs echo
 		fi
 	done
 
 	# 返回 扩展uid 数组
-	echo "${exuid_arr[@]}"
 	# echo "${exuid_arr[@]}"
-
 }
 
 # 安装单个扩展
@@ -231,13 +230,20 @@ function print_exarr() {
 
 # 测试读取扩展列表函数
 # arr_t1=($(read_extension_list $1))
+# arr_t1=($(read_extension_list $1))
+# 调用read_extension_list 函数读取扩展列表，获取扩展id并构建成数组
+# arr_t1=($(read_extension_list ./Extension_List/exlist_java.txt))
+# arr_t1=($(read_extension_list ./Extension_List/exlist_java.txt ./Extension_List/exlist_git.txt))
+
 # read_extension_list $1
 
 # 查看数组元素个数
 # echo ${#arr_t1[@]}
 
+# 查看数组变量 
 # echo $arr_t1
-# echo ${arr_t1[@]}
+# 查看数组每一个元素
+# echo "${arr_t1[@]}"
 
 # echo "----------------------------"
 

@@ -67,6 +67,9 @@ function cp_settings_profile() {
 	local profile_location=$1
 	# 预配置文件
 	local settings_file=$2
+
+	# 复制配置文件到指定的Profile目录
+	cp $settings_file "$profile_location/settings.json"
 }
 
 # 初始化指定Profile
@@ -111,7 +114,7 @@ function init_profile_any() {
 # 无论有没有传入插件列表参数都会安装默认插件
 # 故此函数可以无参执行
 # 默认插件列表默认路径：./Extension_List/exlist_default.txt
-function init_default() {
+function init_profile_default() {
 
 	# 参数列表数组
 	local arg_list=($@)
@@ -152,7 +155,7 @@ function init_default() {
 
 	# echo "${arg_list[@]}"
 
-	init_default_any "${arg_list[@]}"
+	init_profile_any "${arg_list[@]}"
 }
 
 #####################################################################
@@ -163,3 +166,9 @@ function init_default() {
 # else
 # 	init_default "$@"
 # fi
+
+################################测试#################################
+
+
+
+
