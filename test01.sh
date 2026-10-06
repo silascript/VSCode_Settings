@@ -86,15 +86,16 @@ function t2() {
 # ////////////////////////////////////////////////////////////////////
 
 # 测试 t2函数
+
+# t2 ./Extension_List/exlist_java.txt
 # 构建成一个数组
-exid_arr=($(t2 ./Extension_List/exlist_default.txt ./Extension_List/exlist_java.txt))
+# exid_arr=($(t2 ./Extension_List/exlist_default.txt ./Extension_List/exlist_java.txt))
 # exid_arr=($(t2 ./Extension_List/exlist_default.txt))
 
 # 数组数量
-echo ${#exid_arr[@]}
+# echo ${#exid_arr[@]}
 
 # 显示数组每个元素
-echo "${exid_arr[@]}"
-
+# echo "${exid_arr[@]}"
 
 

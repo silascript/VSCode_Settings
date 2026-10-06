@@ -96,7 +96,7 @@ function getProfileLocationByProfileName() {
 function read_extension_list() {
 
 	# 扩展 uid 数组
-	local exuid_arr=()
+	# local exuid_arr=()
 
 	# 多个扩展列表文件
 	for exlist_path in "$@"; do
