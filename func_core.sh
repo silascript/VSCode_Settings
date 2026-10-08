@@ -69,6 +69,8 @@ function create_profile() {
 # ~/.config/Code/User/profiles/profile location/
 # 参数1：Profile 名称
 # 返回：Profile location 值
+#			如果给的Profile名称不存在，则返回空字符串
+#			如果没有任何自定义Profile存在，则返回default
 function getProfileLocationByProfileName() {
 
 	# storage.json文件路径
@@ -77,13 +79,22 @@ function getProfileLocationByProfileName() {
 	# Profile 名称
 	local profile_name=$1
 
-	local profile_location
+	# Profile的Location值
+	local profile_location="default"
 
-	# jq -r '.userDataProfiles[] | .name="Test_Profile"|.location' ~/.config/Code/User/globalStorage/storage.json
+	if [[ $# -eq 0 ]]; then
+		echo -e "\e[93m请提供Profile的名称！\n \e[0m"
+		return 1
+	fi
+	# jq -r '.userDataProfiles[] | select(.name=="Test_Profile")|.location' ~/.config/Code/User/globalStorage/storage.json
 
-	# 获取 Profile location 值
-	profile_location=$(jq -r --arg p_name $profile_name '.userDataProfiles[] | .name=$p_name |.location' $storage_file)
-
+	# 判断 userDataProfiles 节点是否存在
+	# 如果 userDataProfiles节点都不存在，就意味着，没有任何的自定义的Profile
+	local userDataProfiles_exists=$(exists_userdataprofile_node $storage_file)
+	if $userDataProfiles_exists; then
+		# 获取 Profile location 值
+		profile_location=$(jq -r --arg p_name $profile_name '.userDataProfiles[] | select(.name==$p_name) |.location' $storage_file)
+	fi
 	# 返回 Profile location值
 	echo $profile_location
 
@@ -240,7 +251,7 @@ function print_exarr() {
 # 查看数组元素个数
 # echo ${#arr_t1[@]}
 
-# 查看数组变量 
+# 查看数组变量
 # echo $arr_t1
 # 查看数组每一个元素
 # echo "${arr_t1[@]}"
@@ -274,6 +285,13 @@ function print_exarr() {
 # create_profile Test_Profile
 # create_profile Test_P
 # create_profile "$@"
+
+# --------------------------------------------------
+# 测试 通过给定的Profile名称获取Profile的Location值
+# 即 Profile 存储的目录的目录名
+# getProfileLocationByProfileName "$@"
+# test_location=$(getProfileLocationByProfileName "$@")
+# echo test_location
 
 # --------------------------------------------------
 
