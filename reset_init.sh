@@ -4,7 +4,7 @@
 #          ╰──────────────────────────────────────────────────────────╯
 
 # 引入重置函数脚本
-source ./func_reset.sh
+source ./funcs/func_reset.sh
 
 init_vscode() {
 

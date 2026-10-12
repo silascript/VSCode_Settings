@@ -130,18 +130,22 @@ function read_extension_list() {
 }
 
 # 安装单个扩展
-# 安装到默认Profile
+# 安装到默认
 # 参数：扩展id
 function install_extension() {
 	# 扩展的UID，即 Unique Identifier
 	local extension_uid=$1
 
+	if [[ $# -eq 0 ]]; then
+		echo -e "\e[93m请提供扩展uid！\n \e[0m"
+		return
+	fi
 	# 安装
 	code --install-extension $extension_uid
 
 }
 
-# 为某Profile安装单个扩展
+# 为用户自定义Profile安装单个扩展
 # 参数1: Profile 名称
 # 参数2: 扩展id
 function install_extension_profile() {
@@ -162,7 +166,7 @@ function install_extension_profile() {
 	code --profile $profile_name --install-extension $extension_uid
 
 }
-# 为默认Profile批量安装扩展
+# 为默认批量安装扩展
 # 参数：扩展id数组
 function install_batch() {
 
@@ -183,9 +187,9 @@ function install_batch() {
 
 }
 
-# 为某Profile批量安装扩展
+# 为用户自定义Profile批量安装扩展
 # 参数1：Profile 名称
-# 参数2：扩展id数组
+# 参数2...n：扩展id
 function install_batch_profile() {
 
 	# 判断参数是否给全
@@ -235,7 +239,8 @@ function print_exarr() {
 
 # 测试 install_extension 函数
 # install_extension "formulahendry.code-runner"
-# install_extension $1
+# install_extension "formulahendry.code-runner"
+# install_extension "$@"
 
 # --------------------------------------------------
 
