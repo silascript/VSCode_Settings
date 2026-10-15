@@ -5,6 +5,11 @@
 # 	pwd
 # )
 
+
+# declare -r CUR_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+
+
 # getopts
 
 t1() {
@@ -79,6 +84,20 @@ function t2() {
 }
 
 # ///////////////////////////////测试///////////////////////////////
+
+# 测试获取当前脚本路径
+# echo $CUR_PATH
+
+# echo $(dirname)
+# echo $BASH_SOURCE
+# 获取当前脚本自身路径
+# echo ${BASH_SOURCE[0]}
+# 使用dirname截取脚本所在的目录路径
+# echo $(dirname ${BASH_SOURCE[0]})
+# 跳转到脚本所在目录
+# echo $(cd $(dirname ${BASH_SOURCE[0]}))
+# 跳转到脚本所在目录并获取此目录绝对路径
+# echo $(cd $(dirname ${BASH_SOURCE[0]}) && pwd)
 
 # 测试 t1函数
 # t1 "$@"

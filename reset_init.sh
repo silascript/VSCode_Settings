@@ -3,8 +3,11 @@
 #          │                      重置初始化                          │
 #          ╰──────────────────────────────────────────────────────────╯
 
+# 当前目录绝对路径
+declare -r CUR_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
 # 引入重置函数脚本
-source ./funcs/func_reset.sh
+source $CUR_PATH/Funcs/func_reset.sh
 
 init_vscode() {
 

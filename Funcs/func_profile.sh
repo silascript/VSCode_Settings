@@ -6,6 +6,8 @@
 #####################################################################
 # 引入核心函数脚本
 source ./func_core.sh
+source ../func_env.sh
+
 
 #####################################################################
 
@@ -114,14 +116,14 @@ function init_profile_any() {
 # 根据插件列表为默认Profile安装插件
 # 无论有没有传入插件列表参数都会安装默认插件
 # 故此函数可以无参执行
-# 默认插件列表默认路径：./Extension_List/exlist_default.txt
+# 默认插件列表默认路径：项目根目录/Extension_List/exlist_default.txt
 function init_profile_default() {
 
 	# 参数列表数组
 	local arg_list=($@)
 
 	# 默认插件列表
-	local default_exlist_path="./Extension_List/exlist_default.txt"
+	local default_exlist_path="$BASE_PATH/Extension_List/exlist_default.txt"
 	# 默认插件列表的md5值
 	# local md5v_default_exlist_file=$(md5sum $default_exlist_path)
 
