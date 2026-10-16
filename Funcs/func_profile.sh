@@ -6,13 +6,10 @@
 #####################################################################
 
 # 脚本所在目录绝对路径
-curdir_path=$(
-	cd $(dirname ${BASH_SOURCE[0]})
-	pwd
-)
+curdir_path=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 # 引入核心函数脚本
-source  $curdir_path /func_core.sh
+source $curdir_path/func_core.sh
 
 #####################################################################
 

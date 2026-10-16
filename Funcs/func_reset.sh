@@ -6,10 +6,14 @@
 
 # 当前目录绝对路径
 # declare -r CUR_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+# funcdir_path=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 curdir_path=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+# echo "func_reset.sh：$curdir_path"
 
 # 导入基础函数
 source $curdir_path/func_basic.sh
+# source $funcdir_path/func_basic.sh
 # source  ./func_basic.sh
 
 ##############################################################################

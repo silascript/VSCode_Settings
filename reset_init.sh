@@ -4,10 +4,12 @@
 #          ╰──────────────────────────────────────────────────────────╯
 
 # 当前目录绝对路径
-declare -r CUR_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+curdir_path=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+# echo "reset_init.sh：$curdir_path"
 
 # 引入重置函数脚本
-source $CUR_PATH/Funcs/func_reset.sh
+source $curdir_path/Funcs/func_reset.sh
 
 init_vscode() {
 
