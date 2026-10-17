@@ -168,7 +168,7 @@ function install_extension_profile() {
 }
 # 为默认批量安装扩展
 # 参数：扩展id数组
-function install_batch() {
+function install_batch_extension() {
 
 	# 扩展 uid 数组
 	local exuid_arr=($@)
@@ -190,7 +190,7 @@ function install_batch() {
 # 为用户自定义Profile批量安装扩展
 # 参数1：Profile 名称
 # 参数2...n：扩展id
-function install_batch_profile() {
+function install_batch_extension_profile() {
 
 	# 判断参数是否给全
 	if [[ $# -lt 2 ]]; then
@@ -275,7 +275,7 @@ function print_exarr() {
 # arr_t1=($(read_extension_list $1))
 # echo ${arr_t1[@]}
 # 进行批量安装
-# install_batch ${arr_t1[@]}
+# install_batch_extension ${arr_t1[@]}
 
 # --------------------------------------------------
 
@@ -309,7 +309,7 @@ function print_exarr() {
 # --------------------------------------------------
 
 # 测试为某Profile 批量安装扩展
-# install_batch_profile
-# install_batch_profile Test_Profile
-# install_batch_profile Test_Profile redhat.java
-# install_batch_profile Test_Profile redhat.java eamodio.gitlens
+# install_batch_extension_profile
+# install_batch_extension_profile Test_Profile
+# install_batch_extension_profile Test_Profile redhat.java
+# install_batch_extension_profile Test_Profile redhat.java eamodio.gitlens
